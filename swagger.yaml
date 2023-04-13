@@ -11,6 +11,129 @@
     }
   ],
   "paths": {
+    "/device/unlock": {
+      "post": {
+        "tags": [
+          "device-api"
+        ],
+        "summary": "unlocks device ",
+        "operationId": "unlock",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceIdAdditionalData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "returns error response(success=false,body=null) with messageCodes",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/device/issue/fix": {
+      "post": {
+        "tags": [
+          "device-api"
+        ],
+        "summary": "fixes device issue(s) ",
+        "operationId": "fixIssues",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceIdAdditionalData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "returns error response(success=false,body=null) with messageCodes",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/device/diagnose": {
+      "post": {
+        "tags": [
+          "device-api"
+        ],
+        "summary": "diagnose device and return issues if there are any",
+        "operationId": "diagnose",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceIdAdditionalData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDiagnosisResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "returns error response(success=false,body=null) with messageCodes",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/device": {
       "get": {
         "tags": [
@@ -36,6 +159,78 @@
               "*/*": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiResponseListDeviceInfo"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "returns error response(success=false,body=null) with messageCodes",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/device/{deviceId}": {
+      "get": {
+        "tags": [
+          "device-api"
+        ],
+        "summary": "returns details of a device by deviceId",
+        "operationId": "details",
+        "parameters": [
+          {
+            "name": "deviceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDeviceDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "returns error response(success=false,body=null) with messageCodes",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/config/issues/instructions": {
+      "get": {
+        "tags": [
+          "config-api"
+        ],
+        "description": "returns device issues and instruction json data",
+        "operationId": "getIssueInstructions",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMapObjectObject"
                 }
               }
             }
@@ -100,6 +295,127 @@
           },
           "body": {
             "type": "object"
+          }
+        }
+      },
+      "DeviceIdAdditionalData": {
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string"
+          },
+          "additionalData": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ApiResponseFixIssuesResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "messageCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "body": {
+            "$ref": "#/components/schemas/FixIssuesResponse"
+          }
+        }
+      },
+      "FixIssuesResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ApiResponseDiagnosisResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "messageCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "body": {
+            "$ref": "#/components/schemas/DiagnosisResponse"
+          }
+        }
+      },
+      "DiagnosisResponse": {
+        "type": "object",
+        "properties": {
+          "vendor": {
+            "type": "string",
+            "enum": [
+              "JAMF",
+              "MOBILE_IRON"
+            ]
+          },
+          "issues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Issue"
+            }
+          },
+          "failedTests": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "OS_OUTDATED",
+                "CERT_EXPIRED",
+                "APP_OUTDATED"
+              ]
+            }
+          },
+          "allTests": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "OS_OUTDATED",
+                "CERT_EXPIRED",
+                "APP_OUTDATED"
+              ]
+            }
+          }
+        }
+      },
+      "Issue": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "OS_OUTDATED",
+              "CERT_EXPIRED",
+              "APP_OUTDATED"
+            ]
+          },
+          "additionalData": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
           }
         }
       },
@@ -187,6 +503,46 @@
           },
           "tethered": {
             "type": "string"
+          }
+        }
+      },
+      "ApiResponseDeviceDetails": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "messageCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "body": {
+            "$ref": "#/components/schemas/DeviceDetails"
+          }
+        }
+      },
+      "DeviceDetails": {
+        "type": "object"
+      },
+      "ApiResponseMapObjectObject": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "messageCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "body": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
           }
         }
       }

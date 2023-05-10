@@ -11,6 +11,47 @@
     }
   ],
   "paths": {
+    "/device/wipe": {
+      "post": {
+        "tags": [
+          "device-api"
+        ],
+        "summary": "wipes device ",
+        "operationId": "wipe",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceIdAdditionalData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "returns error response(success=false,body=null) with messageCodes",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/device/unlock": {
       "post": {
         "tags": [
@@ -52,6 +93,170 @@
         }
       }
     },
+    "/device/sync": {
+      "post": {
+        "tags": [
+          "device-api"
+        ],
+        "summary": "sync device",
+        "operationId": "sync",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceIdAdditionalData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "returns error response(success=false,body=null) with messageCodes",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/device/shutdown": {
+      "post": {
+        "tags": [
+          "device-api"
+        ],
+        "summary": "shutdowns device ",
+        "operationId": "shutdown",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceIdAdditionalData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "returns error response(success=false,body=null) with messageCodes",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/device/retire": {
+      "post": {
+        "tags": [
+          "device-api"
+        ],
+        "summary": "retire or un manage device ",
+        "operationId": "retire",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceIdAdditionalData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "returns error response(success=false,body=null) with messageCodes",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/device/restart": {
+      "post": {
+        "tags": [
+          "device-api"
+        ],
+        "summary": "restarts device ",
+        "operationId": "restart",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceIdAdditionalData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "returns error response(success=false,body=null) with messageCodes",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/device/issue/fix": {
       "post": {
         "tags": [
@@ -59,6 +264,88 @@
         ],
         "summary": "fixes device issue(s) ",
         "operationId": "fixIssues",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceIdAdditionalData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "returns error response(success=false,body=null) with messageCodes",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/device/enableLostMode": {
+      "post": {
+        "tags": [
+          "device-api"
+        ],
+        "summary": "enable lost mode on device ",
+        "operationId": "enableLostMode",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceIdAdditionalData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "returns error response(success=false,body=null) with messageCodes",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/device/disableLostMode": {
+      "post": {
+        "tags": [
+          "device-api"
+        ],
+        "summary": "disable lost mode on device ",
+        "operationId": "disableLostMode",
         "requestBody": {
           "content": {
             "application/json": {
@@ -360,6 +647,9 @@
           }
         }
       },
+      "DeviceDetails": {
+        "type": "object"
+      },
       "DiagnosisResponse": {
         "type": "object",
         "properties": {
@@ -397,6 +687,15 @@
                 "APP_OUTDATED"
               ]
             }
+          },
+          "deviceDetails": {
+            "$ref": "#/components/schemas/DeviceDetails"
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MobileDeviceGroup"
+            }
           }
         }
       },
@@ -416,6 +715,18 @@
             "additionalProperties": {
               "type": "object"
             }
+          }
+        }
+      },
+      "MobileDeviceGroup": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
           }
         }
       },
@@ -492,7 +803,7 @@
           "timezone": {
             "type": "string"
           },
-          "lastModeEnabled": {
+          "lostModeEnabled": {
             "type": "string"
           },
           "store": {
@@ -502,6 +813,9 @@
             "type": "string"
           },
           "tethered": {
+            "type": "string"
+          },
+          "type": {
             "type": "string"
           }
         }
@@ -522,9 +836,6 @@
             "$ref": "#/components/schemas/DeviceDetails"
           }
         }
-      },
-      "DeviceDetails": {
-        "type": "object"
       },
       "ApiResponseMapObjectObject": {
         "type": "object",

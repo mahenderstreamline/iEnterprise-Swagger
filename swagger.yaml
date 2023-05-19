@@ -504,6 +504,47 @@
         }
       }
     },
+    "/device/history/{deviceId}": {
+      "get": {
+        "tags": [
+          "device-api"
+        ],
+        "summary": "returns management history",
+        "operationId": "getManagementHistory",
+        "parameters": [
+          {
+            "name": "deviceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMobileAuditManagementHistory"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "returns error response(success=false,body=null) with messageCodes",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/config/issues/instructions": {
       "get": {
         "tags": [
@@ -647,8 +688,178 @@
           }
         }
       },
+      "Application": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "shortVersion": {
+            "type": "string"
+          }
+        }
+      },
+      "Certificate": {
+        "type": "object",
+        "properties": {
+          "commonName": {
+            "type": "string"
+          },
+          "identity": {
+            "type": "boolean"
+          },
+          "expirationDateEpoch": {
+            "type": "string"
+          },
+          "subjectName": {
+            "type": "string"
+          },
+          "serialNumber": {
+            "type": "string"
+          },
+          "sha1Fingerprint": {
+            "type": "string"
+          },
+          "issuedDateEpoch": {
+            "type": "string"
+          },
+          "certificateStatus": {
+            "type": "string"
+          },
+          "lifecycleStatus": {
+            "type": "string"
+          }
+        }
+      },
+      "ConfigurationProfile": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          },
+          "identifier": {
+            "type": "string"
+          }
+        }
+      },
       "DeviceDetails": {
-        "type": "object"
+        "type": "object",
+        "properties": {
+          "serialNumber": {
+            "type": "string"
+          },
+          "osVersion": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "timeZone": {
+            "type": "string"
+          },
+          "ios": {
+            "$ref": "#/components/schemas/Ios"
+          },
+          "ipAddress": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "enforceName": {
+            "type": "boolean"
+          },
+          "assetTag": {
+            "type": "object"
+          },
+          "osRapidSecurityResponse": {
+            "type": "object"
+          },
+          "softwareUpdateDeviceId": {
+            "type": "string"
+          },
+          "initialEntryTimestamp": {
+            "type": "string"
+          },
+          "wifiMacAddress": {
+            "type": "string"
+          },
+          "bluetoothMacAddress": {
+            "type": "string"
+          },
+          "deviceOwnershipLevel": {
+            "type": "string"
+          },
+          "enrollmentMethod": {
+            "type": "string"
+          },
+          "lastEnrollmentTimestamp": {
+            "type": "string"
+          },
+          "extensionAttributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExtensionAttribute"
+            }
+          },
+          "managementId": {
+            "type": "string"
+          },
+          "lastInventoryUpdateTimestamp": {
+            "type": "string"
+          },
+          "osSupplementalBuildVersion": {
+            "type": "object"
+          },
+          "enrollmentSessionTokenValid": {
+            "type": "boolean"
+          },
+          "mdmProfileExpirationTimestamp": {
+            "type": "string"
+          },
+          "declarativeDeviceManagementEnabled": {
+            "type": "boolean"
+          },
+          "osBuild": {
+            "type": "string"
+          },
+          "udid": {
+            "type": "string"
+          },
+          "managed": {
+            "type": "boolean"
+          },
+          "site": {
+            "$ref": "#/components/schemas/Site"
+          },
+          "tvos": {
+            "type": "object"
+          }
+        }
       },
       "DiagnosisResponse": {
         "type": "object",
@@ -699,6 +910,143 @@
           }
         }
       },
+      "ExtensionAttribute": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "value": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "extensionAttributeCollectionAllowed": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Ios": {
+        "type": "object",
+        "properties": {
+          "capacityMb": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "availableMb": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "percentageUsed": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "model": {
+            "type": "string"
+          },
+          "modelIdentifier": {
+            "type": "string"
+          },
+          "modelNumber": {
+            "type": "string"
+          },
+          "shared": {
+            "type": "boolean"
+          },
+          "supervised": {
+            "type": "boolean"
+          },
+          "batteryLevel": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "lastBackupTimestamp": {
+            "type": "object"
+          },
+          "deviceLocatorServiceEnabled": {
+            "type": "boolean"
+          },
+          "doNotDisturbEnabled": {
+            "type": "boolean"
+          },
+          "cloudBackupEnabled": {
+            "type": "boolean"
+          },
+          "lastCloudBackupTimestamp": {
+            "type": "object"
+          },
+          "locationServicesEnabled": {
+            "type": "boolean"
+          },
+          "computer": {
+            "type": "object"
+          },
+          "bleCapable": {
+            "type": "boolean"
+          },
+          "security": {
+            "$ref": "#/components/schemas/Security"
+          },
+          "purchasing": {
+            "$ref": "#/components/schemas/Purchasing"
+          },
+          "network": {
+            "$ref": "#/components/schemas/Network"
+          },
+          "configurationProfiles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConfigurationProfile"
+            }
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "applications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Application"
+            }
+          },
+          "certificates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Certificate"
+            }
+          },
+          "provisioningProfiles": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "ebooks": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "serviceSubscriptions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServiceSubscription"
+            }
+          },
+          "iTunesStoreAccountActive": {
+            "type": "boolean"
+          }
+        }
+      },
       "Issue": {
         "type": "object",
         "properties": {
@@ -718,12 +1066,237 @@
           }
         }
       },
+      "Location": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "object"
+          },
+          "realName": {
+            "type": "object"
+          },
+          "emailAddress": {
+            "type": "object"
+          },
+          "position": {
+            "type": "object"
+          },
+          "phoneNumber": {
+            "type": "object"
+          },
+          "departmentId": {
+            "type": "object"
+          },
+          "buildingId": {
+            "type": "object"
+          },
+          "room": {
+            "type": "object"
+          }
+        }
+      },
       "MobileDeviceGroup": {
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
             "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "Network": {
+        "type": "object",
+        "properties": {
+          "cellularTechnology": {
+            "type": "string"
+          },
+          "voiceRoamingEnabled": {
+            "type": "boolean"
+          },
+          "imei": {
+            "type": "string"
+          },
+          "iccid": {
+            "type": "string"
+          },
+          "meid": {
+            "type": "object"
+          },
+          "eid": {
+            "type": "string"
+          },
+          "carrierSettingsVersion": {
+            "type": "string"
+          },
+          "currentCarrierNetwork": {
+            "type": "object"
+          },
+          "currentMobileCountryCode": {
+            "type": "string"
+          },
+          "currentMobileNetworkCode": {
+            "type": "string"
+          },
+          "homeCarrierNetwork": {
+            "type": "string"
+          },
+          "homeMobileCountryCode": {
+            "type": "string"
+          },
+          "homeMobileNetworkCode": {
+            "type": "string"
+          },
+          "dataRoamingEnabled": {
+            "type": "boolean"
+          },
+          "roaming": {
+            "type": "boolean"
+          },
+          "personalHotspotEnabled": {
+            "type": "boolean"
+          },
+          "phoneNumber": {
+            "type": "object"
+          }
+        }
+      },
+      "Purchasing": {
+        "type": "object",
+        "properties": {
+          "purchased": {
+            "type": "boolean"
+          },
+          "leased": {
+            "type": "boolean"
+          },
+          "poNumber": {
+            "type": "object"
+          },
+          "vendor": {
+            "type": "object"
+          },
+          "appleCareId": {
+            "type": "object"
+          },
+          "purchasePrice": {
+            "type": "object"
+          },
+          "purchasingAccount": {
+            "type": "object"
+          },
+          "poDate": {
+            "type": "string"
+          },
+          "warrantyExpiresDate": {
+            "type": "string"
+          },
+          "leaseExpiresDate": {
+            "type": "string"
+          },
+          "lifeExpectancy": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "purchasingContact": {
+            "type": "object"
+          }
+        }
+      },
+      "Security": {
+        "type": "object",
+        "properties": {
+          "dataProtected": {
+            "type": "boolean"
+          },
+          "blockLevelEncryptionCapable": {
+            "type": "boolean"
+          },
+          "fileLevelEncryptionCapable": {
+            "type": "boolean"
+          },
+          "passcodePresent": {
+            "type": "boolean"
+          },
+          "passcodeCompliant": {
+            "type": "boolean"
+          },
+          "passcodeCompliantWithProfile": {
+            "type": "boolean"
+          },
+          "hardwareEncryption": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "activationLockEnabled": {
+            "type": "boolean"
+          },
+          "jailBreakDetected": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ServiceSubscription": {
+        "type": "object",
+        "properties": {
+          "carrierSettingsVersion": {
+            "type": "string"
+          },
+          "currentCarrierNetwork": {
+            "type": "object"
+          },
+          "currentMobileCountryCode": {
+            "type": "string"
+          },
+          "currentMobileNetworkCode": {
+            "type": "string"
+          },
+          "subscriberCarrierNetwork": {
+            "type": "string"
+          },
+          "eid": {
+            "type": "string"
+          },
+          "iccid": {
+            "type": "string"
+          },
+          "imei": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "labelId": {
+            "type": "string"
+          },
+          "meid": {
+            "type": "object"
+          },
+          "phoneNumber": {
+            "type": "object"
+          },
+          "slot": {
+            "type": "string"
+          },
+          "dataPreferred": {
+            "type": "boolean"
+          },
+          "voicePreferred": {
+            "type": "boolean"
+          },
+          "roaming": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Site": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
           },
           "name": {
             "type": "string"
@@ -817,6 +1390,16 @@
           },
           "type": {
             "type": "string"
+          },
+          "indicators": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "OS_OUT_DATED",
+                "LAST_ONLINE"
+              ]
+            }
           }
         }
       },
@@ -834,6 +1417,134 @@
           },
           "body": {
             "$ref": "#/components/schemas/DeviceDetails"
+          }
+        }
+      },
+      "ApiResponseMobileAuditManagementHistory": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "messageCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "body": {
+            "$ref": "#/components/schemas/MobileAuditManagementHistory"
+          }
+        }
+      },
+      "MobileAudit": {
+        "type": "object",
+        "properties": {
+          "event": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "dateTime": {
+            "type": "string"
+          },
+          "dateTimeEpoch": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "MobileAuditManagementHistory": {
+        "type": "object",
+        "properties": {
+          "completed": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MobileCommandCompleted"
+            }
+          },
+          "failed": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MobileCommandFailed"
+            }
+          },
+          "pending": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MobileCommandPending"
+            }
+          },
+          "auditHistory": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MobileAudit"
+            }
+          }
+        }
+      },
+      "MobileCommandCompleted": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "completedOn": {
+            "type": "string"
+          },
+          "completedEpoch": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "userName": {
+            "type": "string"
+          }
+        }
+      },
+      "MobileCommandFailed": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "failedOn": {
+            "type": "string"
+          },
+          "failedOnEpoch": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "issuedOn": {
+            "type": "string"
+          },
+          "issuedOnEpoch": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "userName": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        }
+      },
+      "MobileCommandPending": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "issuedOn": {
+            "type": "string"
+          },
+          "issuedOnEpoch": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "userName": {
+            "type": "string"
           }
         }
       },

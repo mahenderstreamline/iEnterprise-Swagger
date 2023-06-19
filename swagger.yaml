@@ -39,12 +39,18 @@
               }
             }
           },
+          "401": {
+            "description": "Returns unauthorized/forbidden response code"
+          },
           "500": {
             "description": "returns error response(success=false,body=null) with messageCodes",
             "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseVoid"
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "messageCodes": [
+                    "unknown.error"
+                  ]
                 }
               }
             }
@@ -80,12 +86,18 @@
               }
             }
           },
+          "401": {
+            "description": "Returns unauthorized/forbidden response code"
+          },
           "500": {
             "description": "returns error response(success=false,body=null) with messageCodes",
             "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseVoid"
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "messageCodes": [
+                    "unknown.error"
+                  ]
                 }
               }
             }
@@ -121,12 +133,18 @@
               }
             }
           },
+          "401": {
+            "description": "Returns unauthorized/forbidden response code"
+          },
           "500": {
             "description": "returns error response(success=false,body=null) with messageCodes",
             "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseVoid"
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "messageCodes": [
+                    "unknown.error"
+                  ]
                 }
               }
             }
@@ -162,12 +180,18 @@
               }
             }
           },
+          "401": {
+            "description": "Returns unauthorized/forbidden response code"
+          },
           "500": {
             "description": "returns error response(success=false,body=null) with messageCodes",
             "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseVoid"
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "messageCodes": [
+                    "unknown.error"
+                  ]
                 }
               }
             }
@@ -203,12 +227,18 @@
               }
             }
           },
+          "401": {
+            "description": "Returns unauthorized/forbidden response code"
+          },
           "500": {
             "description": "returns error response(success=false,body=null) with messageCodes",
             "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseVoid"
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "messageCodes": [
+                    "unknown.error"
+                  ]
                 }
               }
             }
@@ -244,12 +274,18 @@
               }
             }
           },
+          "401": {
+            "description": "Returns unauthorized/forbidden response code"
+          },
           "500": {
             "description": "returns error response(success=false,body=null) with messageCodes",
             "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseVoid"
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "messageCodes": [
+                    "unknown.error"
+                  ]
                 }
               }
             }
@@ -285,12 +321,18 @@
               }
             }
           },
+          "401": {
+            "description": "Returns unauthorized/forbidden response code"
+          },
           "500": {
             "description": "returns error response(success=false,body=null) with messageCodes",
             "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseVoid"
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "messageCodes": [
+                    "unknown.error"
+                  ]
                 }
               }
             }
@@ -326,12 +368,18 @@
               }
             }
           },
+          "401": {
+            "description": "Returns unauthorized/forbidden response code"
+          },
           "500": {
             "description": "returns error response(success=false,body=null) with messageCodes",
             "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseVoid"
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "messageCodes": [
+                    "unknown.error"
+                  ]
                 }
               }
             }
@@ -367,12 +415,18 @@
               }
             }
           },
+          "401": {
+            "description": "Returns unauthorized/forbidden response code"
+          },
           "500": {
             "description": "returns error response(success=false,body=null) with messageCodes",
             "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseVoid"
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "messageCodes": [
+                    "unknown.error"
+                  ]
                 }
               }
             }
@@ -408,12 +462,18 @@
               }
             }
           },
+          "401": {
+            "description": "Returns unauthorized/forbidden response code"
+          },
           "500": {
             "description": "returns error response(success=false,body=null) with messageCodes",
             "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseVoid"
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "messageCodes": [
+                    "unknown.error"
+                  ]
                 }
               }
             }
@@ -450,12 +510,18 @@
               }
             }
           },
+          "401": {
+            "description": "Returns unauthorized/forbidden response code"
+          },
           "500": {
             "description": "returns error response(success=false,body=null) with messageCodes",
             "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseVoid"
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "messageCodes": [
+                    "unknown.error"
+                  ]
                 }
               }
             }
@@ -491,12 +557,18 @@
               }
             }
           },
+          "401": {
+            "description": "Returns unauthorized/forbidden response code"
+          },
           "500": {
             "description": "returns error response(success=false,body=null) with messageCodes",
             "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseVoid"
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "messageCodes": [
+                    "unknown.error"
+                  ]
                 }
               }
             }
@@ -532,12 +604,18 @@
               }
             }
           },
+          "401": {
+            "description": "Returns unauthorized/forbidden response code"
+          },
           "500": {
             "description": "returns error response(success=false,body=null) with messageCodes",
             "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseVoid"
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "messageCodes": [
+                    "unknown.error"
+                  ]
                 }
               }
             }
@@ -563,12 +641,55 @@
               }
             }
           },
+          "401": {
+            "description": "Returns unauthorized/forbidden response code"
+          },
           "500": {
             "description": "returns error response(success=false,body=null) with messageCodes",
             "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "messageCodes": [
+                    "unknown.error"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/check/endpoints": {
+      "get": {
+        "tags": [
+          "checks-api"
+        ],
+        "description": "checks configured endpoints for client",
+        "operationId": "getIssueInstructions_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApiResponseVoid"
+                  "$ref": "#/components/schemas/ApiResponseEndpointChecksResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Returns unauthorized/forbidden response code"
+          },
+          "500": {
+            "description": "returns error response(success=false,body=null) with messageCodes",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "messageCodes": [
+                    "unknown.error"
+                  ]
                 }
               }
             }
@@ -593,12 +714,18 @@
               }
             }
           },
+          "401": {
+            "description": "Returns unauthorized/forbidden response code"
+          },
           "500": {
             "description": "returns error response(success=false,body=null) with messageCodes",
             "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseVoid"
+              "application/json": {
+                "example": {
+                  "success": false,
+                  "messageCodes": [
+                    "unknown.error"
+                  ]
                 }
               }
             }
@@ -609,23 +736,6 @@
   },
   "components": {
     "schemas": {
-      "ApiResponseVoid": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "messageCodes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "body": {
-            "type": "object"
-          }
-        }
-      },
       "DeviceIdAdditionalData": {
         "type": "object",
         "properties": {
@@ -778,17 +888,20 @@
           "timeZone": {
             "type": "string"
           },
-          "ios": {
-            "$ref": "#/components/schemas/Ios"
-          },
-          "ipAddress": {
+          "lastInventoryUpdateTimestamp": {
             "type": "string"
           },
-          "additionalProperties": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object"
-            }
+          "osSupplementalBuildVersion": {
+            "type": "object"
+          },
+          "enrollmentSessionTokenValid": {
+            "type": "boolean"
+          },
+          "mdmProfileExpirationTimestamp": {
+            "type": "string"
+          },
+          "declarativeDeviceManagementEnabled": {
+            "type": "boolean"
           },
           "enforceName": {
             "type": "boolean"
@@ -829,20 +942,14 @@
           "managementId": {
             "type": "string"
           },
-          "lastInventoryUpdateTimestamp": {
+          "ipAddress": {
             "type": "string"
           },
-          "osSupplementalBuildVersion": {
-            "type": "object"
-          },
-          "enrollmentSessionTokenValid": {
-            "type": "boolean"
-          },
-          "mdmProfileExpirationTimestamp": {
-            "type": "string"
-          },
-          "declarativeDeviceManagementEnabled": {
-            "type": "boolean"
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
           },
           "osBuild": {
             "type": "string"
@@ -858,6 +965,9 @@
           },
           "tvos": {
             "type": "object"
+          },
+          "ios": {
+            "$ref": "#/components/schemas/Ios"
           }
         }
       },
@@ -1564,6 +1674,52 @@
             "type": "object",
             "additionalProperties": {
               "type": "object"
+            }
+          }
+        }
+      },
+      "ApiResponseEndpointChecksResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "messageCodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "body": {
+            "$ref": "#/components/schemas/EndpointChecksResponse"
+          }
+        }
+      },
+      "EndpointCheckResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "responseCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "response": {
+            "type": "string"
+          }
+        }
+      },
+      "EndpointChecksResponse": {
+        "type": "object",
+        "properties": {
+          "endPoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EndpointCheckResponse"
             }
           }
         }

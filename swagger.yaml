@@ -1,13 +1,26 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "OpenAPI definition",
-    "version": "v0"
+    "title": "Mdm-api API",
+    "version": "v1"
   },
   "servers": [
     {
       "url": "http://localhost:8080",
-      "description": "Generated server url"
+      "description": "Local"
+    },
+    {
+      "url": "http://devapi.ienterprise.info",
+      "description": "Dev"
+    },
+    {
+      "url": "https://stagingapi.ienterprise.com/",
+      "description": "Staging"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
     }
   ],
   "paths": {
@@ -888,14 +901,14 @@
           "timeZone": {
             "type": "string"
           },
-          "lastInventoryUpdateTimestamp": {
-            "type": "string"
+          "enrollmentSessionTokenValid": {
+            "type": "boolean"
           },
           "osSupplementalBuildVersion": {
             "type": "object"
           },
-          "enrollmentSessionTokenValid": {
-            "type": "boolean"
+          "lastInventoryUpdateTimestamp": {
+            "type": "string"
           },
           "mdmProfileExpirationTimestamp": {
             "type": "string"
@@ -942,14 +955,17 @@
           "managementId": {
             "type": "string"
           },
-          "ipAddress": {
-            "type": "string"
-          },
           "additionalProperties": {
             "type": "object",
             "additionalProperties": {
               "type": "object"
             }
+          },
+          "ipAddress": {
+            "type": "string"
+          },
+          "ios": {
+            "$ref": "#/components/schemas/Ios"
           },
           "osBuild": {
             "type": "string"
@@ -965,9 +981,6 @@
           },
           "tvos": {
             "type": "object"
-          },
-          "ios": {
-            "$ref": "#/components/schemas/Ios"
           }
         }
       },
@@ -1723,6 +1736,13 @@
             }
           }
         }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }

@@ -1,1749 +1,1985 @@
 {
-  "openapi": "3.0.1",
-  "info": {
-    "title": "Mdm-api API",
-    "version": "v1"
-  },
-  "servers": [
-    {
-      "url": "http://localhost:8080",
-      "description": "Local"
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Mdm-api API",
+        "version": "v1"
     },
-    {
-      "url": "http://devapi.ienterprise.info",
-      "description": "Dev"
+    "servers": [
+        {
+            "url": "http://localhost:8080",
+            "description": "Local"
+        },
+        {
+            "url": "http://devapi.ienterprise.info",
+            "description": "Dev"
+        },
+        {
+            "url": "https://stagingapi.ienterprise.com/",
+            "description": "Staging"
+        }
+    ],
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ],
+    "paths": {
+        "/device/wipe": {
+            "post": {
+                "tags": [
+                    "device-api"
+                ],
+                "summary": "wipes device ",
+                "operationId": "wipe",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeviceIdAdditionalData"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "500": {
+                        "description": "returns error response(success=false,body=null) with messageCodes",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": false,
+                                    "messageCodes": [
+                                        "unknown.error"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Returns unauthorized/forbidden response code"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/device/unlock": {
+            "post": {
+                "tags": [
+                    "device-api"
+                ],
+                "summary": "unlocks device ",
+                "operationId": "unlock",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeviceIdAdditionalData"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "500": {
+                        "description": "returns error response(success=false,body=null) with messageCodes",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": false,
+                                    "messageCodes": [
+                                        "unknown.error"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Returns unauthorized/forbidden response code"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/device/sync": {
+            "post": {
+                "tags": [
+                    "device-api"
+                ],
+                "summary": "sync device",
+                "operationId": "sync",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeviceIdAdditionalData"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "500": {
+                        "description": "returns error response(success=false,body=null) with messageCodes",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": false,
+                                    "messageCodes": [
+                                        "unknown.error"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Returns unauthorized/forbidden response code"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/device/shutdown": {
+            "post": {
+                "tags": [
+                    "device-api"
+                ],
+                "summary": "shutdowns device ",
+                "operationId": "shutdown",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeviceIdAdditionalData"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "500": {
+                        "description": "returns error response(success=false,body=null) with messageCodes",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": false,
+                                    "messageCodes": [
+                                        "unknown.error"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Returns unauthorized/forbidden response code"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/device/retire": {
+            "post": {
+                "tags": [
+                    "device-api"
+                ],
+                "summary": "retire or un manage device ",
+                "operationId": "retire",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeviceIdAdditionalData"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "500": {
+                        "description": "returns error response(success=false,body=null) with messageCodes",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": false,
+                                    "messageCodes": [
+                                        "unknown.error"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Returns unauthorized/forbidden response code"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/device/restart": {
+            "post": {
+                "tags": [
+                    "device-api"
+                ],
+                "summary": "restarts device ",
+                "operationId": "restart",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeviceIdAdditionalData"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "500": {
+                        "description": "returns error response(success=false,body=null) with messageCodes",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": false,
+                                    "messageCodes": [
+                                        "unknown.error"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Returns unauthorized/forbidden response code"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/device/issue/fix": {
+            "post": {
+                "tags": [
+                    "device-api"
+                ],
+                "summary": "fixes device issue(s) ",
+                "operationId": "fixIssues",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeviceIdAdditionalData"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "500": {
+                        "description": "returns error response(success=false,body=null) with messageCodes",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": false,
+                                    "messageCodes": [
+                                        "unknown.error"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Returns unauthorized/forbidden response code"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/device/enableLostMode": {
+            "post": {
+                "tags": [
+                    "device-api"
+                ],
+                "summary": "enable lost mode on device ",
+                "operationId": "enableLostMode",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeviceIdAdditionalData"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "500": {
+                        "description": "returns error response(success=false,body=null) with messageCodes",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": false,
+                                    "messageCodes": [
+                                        "unknown.error"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Returns unauthorized/forbidden response code"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/device/disableLostMode": {
+            "post": {
+                "tags": [
+                    "device-api"
+                ],
+                "summary": "disable lost mode on device ",
+                "operationId": "disableLostMode",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeviceIdAdditionalData"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "500": {
+                        "description": "returns error response(success=false,body=null) with messageCodes",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": false,
+                                    "messageCodes": [
+                                        "unknown.error"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Returns unauthorized/forbidden response code"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/device/diagnose": {
+            "post": {
+                "tags": [
+                    "device-api"
+                ],
+                "summary": "diagnose device and return issues if there are any",
+                "operationId": "diagnose",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeviceIdAdditionalData"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "500": {
+                        "description": "returns error response(success=false,body=null) with messageCodes",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": false,
+                                    "messageCodes": [
+                                        "unknown.error"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Returns unauthorized/forbidden response code"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponseDiagnosisResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/device/data/import": {
+            "post": {
+                "tags": [
+                    "device-data-import-api"
+                ],
+                "operationId": "importData",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "file"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500": {
+                        "description": "returns error response(success=false,body=null) with messageCodes",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": false,
+                                    "messageCodes": [
+                                        "unknown.error"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Returns unauthorized/forbidden response code"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponseDeviceDataImportResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/device/data/import/success": {
+            "post": {
+                "tags": [
+                    "device-data-import-api"
+                ],
+                "operationId": "importDataSuccess",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "file"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500": {
+                        "description": "returns error response(success=false,body=null) with messageCodes",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": false,
+                                    "messageCodes": [
+                                        "unknown.error"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Returns unauthorized/forbidden response code"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponseDeviceDataImportResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/device/data/import/error/reccount": {
+            "post": {
+                "tags": [
+                    "device-data-import-api"
+                ],
+                "operationId": "importDataErrorRec",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "file"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500": {
+                        "description": "returns error response(success=false,body=null) with messageCodes",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": false,
+                                    "messageCodes": [
+                                        "unknown.error"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Returns unauthorized/forbidden response code"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponseDeviceDataImportResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/device": {
+            "get": {
+                "tags": [
+                    "device-api"
+                ],
+                "summary": "Filters and returns enrolled devices based on searchString, searchString request param is optional. if the searchString is passed, filters devices based on searchString. if no devices found return error response(success = false) with messageCodes",
+                "operationId": "findAll",
+                "parameters": [
+                    {
+                        "name": "searchString",
+                        "in": "query",
+                        "description": "String to be searched either in device name or serial number ",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "returns error response(success=false,body=null) with messageCodes",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": false,
+                                    "messageCodes": [
+                                        "unknown.error"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Returns unauthorized/forbidden response code"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponseListDeviceInfo"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/device/{deviceId}": {
+            "get": {
+                "tags": [
+                    "device-api"
+                ],
+                "summary": "returns details of a device by deviceId",
+                "operationId": "details",
+                "parameters": [
+                    {
+                        "name": "deviceId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "returns error response(success=false,body=null) with messageCodes",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": false,
+                                    "messageCodes": [
+                                        "unknown.error"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Returns unauthorized/forbidden response code"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponseDeviceDetails"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/device/history/{deviceId}": {
+            "get": {
+                "tags": [
+                    "device-api"
+                ],
+                "summary": "returns management history",
+                "operationId": "getManagementHistory",
+                "parameters": [
+                    {
+                        "name": "deviceId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "returns error response(success=false,body=null) with messageCodes",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": false,
+                                    "messageCodes": [
+                                        "unknown.error"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Returns unauthorized/forbidden response code"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponseMobileAuditManagementHistory"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/config/issues/instructions": {
+            "get": {
+                "tags": [
+                    "config-api"
+                ],
+                "description": "returns device issues and instruction json data",
+                "operationId": "getIssueInstructions",
+                "responses": {
+                    "500": {
+                        "description": "returns error response(success=false,body=null) with messageCodes",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": false,
+                                    "messageCodes": [
+                                        "unknown.error"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Returns unauthorized/forbidden response code"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponseMapObjectObject"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/check/endpoints": {
+            "get": {
+                "tags": [
+                    "checks-api"
+                ],
+                "description": "checks configured endpoints for client",
+                "operationId": "getIssueInstructions_1",
+                "responses": {
+                    "500": {
+                        "description": "returns error response(success=false,body=null) with messageCodes",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": false,
+                                    "messageCodes": [
+                                        "unknown.error"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Returns unauthorized/forbidden response code"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResponseEndpointChecksResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/": {
+            "get": {
+                "tags": [
+                    "health-api"
+                ],
+                "operationId": "checkHealth_1",
+                "responses": {
+                    "500": {
+                        "description": "returns error response(success=false,body=null) with messageCodes",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "success": false,
+                                    "messageCodes": [
+                                        "unknown.error"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Returns unauthorized/forbidden response code"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     },
-    {
-      "url": "https://stagingapi.ienterprise.com/",
-      "description": "Staging"
+    "components": {
+        "schemas": {
+            "DeviceIdAdditionalData": {
+                "type": "object",
+                "properties": {
+                    "deviceId": {
+                        "type": "string"
+                    },
+                    "additionalData": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "ApiResponseFixIssuesResponse": {
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "type": "boolean"
+                    },
+                    "messageCodes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "body": {
+                        "$ref": "#/components/schemas/FixIssuesResponse"
+                    }
+                }
+            },
+            "FixIssuesResponse": {
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "type": "boolean"
+                    },
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "ApiResponseDiagnosisResponse": {
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "type": "boolean"
+                    },
+                    "messageCodes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "body": {
+                        "$ref": "#/components/schemas/DiagnosisResponse"
+                    }
+                }
+            },
+            "Application": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "identifier": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "string"
+                    },
+                    "shortVersion": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Certificate": {
+                "type": "object",
+                "properties": {
+                    "commonName": {
+                        "type": "string"
+                    },
+                    "identity": {
+                        "type": "boolean"
+                    },
+                    "expirationDateEpoch": {
+                        "type": "string"
+                    },
+                    "subjectName": {
+                        "type": "string"
+                    },
+                    "serialNumber": {
+                        "type": "string"
+                    },
+                    "sha1Fingerprint": {
+                        "type": "string"
+                    },
+                    "issuedDateEpoch": {
+                        "type": "string"
+                    },
+                    "certificateStatus": {
+                        "type": "string"
+                    },
+                    "lifecycleStatus": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ConfigurationProfile": {
+                "type": "object",
+                "properties": {
+                    "displayName": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "string"
+                    },
+                    "uuid": {
+                        "type": "string"
+                    },
+                    "identifier": {
+                        "type": "string"
+                    }
+                }
+            },
+            "DeviceDetails": {
+                "type": "object",
+                "properties": {
+                    "serialNumber": {
+                        "type": "string"
+                    },
+                    "osVersion": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "location": {
+                        "$ref": "#/components/schemas/Location"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "timeZone": {
+                        "type": "string"
+                    },
+                    "softwareUpdateDeviceId": {
+                        "type": "string"
+                    },
+                    "bluetoothMacAddress": {
+                        "type": "string"
+                    },
+                    "deviceOwnershipLevel": {
+                        "type": "string"
+                    },
+                    "enforceName": {
+                        "type": "boolean"
+                    },
+                    "assetTag": {
+                        "type": "object"
+                    },
+                    "osRapidSecurityResponse": {
+                        "type": "object"
+                    },
+                    "enrollmentMethod": {
+                        "type": "string"
+                    },
+                    "extensionAttributes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ExtensionAttribute"
+                        }
+                    },
+                    "lastEnrollmentTimestamp": {
+                        "type": "string"
+                    },
+                    "managementId": {
+                        "type": "string"
+                    },
+                    "initialEntryTimestamp": {
+                        "type": "string"
+                    },
+                    "wifiMacAddress": {
+                        "type": "string"
+                    },
+                    "additionalProperties": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    },
+                    "ipAddress": {
+                        "type": "string"
+                    },
+                    "lastInventoryUpdateTimestamp": {
+                        "type": "string"
+                    },
+                    "osSupplementalBuildVersion": {
+                        "type": "object"
+                    },
+                    "enrollmentSessionTokenValid": {
+                        "type": "boolean"
+                    },
+                    "mdmProfileExpirationTimestamp": {
+                        "type": "string"
+                    },
+                    "declarativeDeviceManagementEnabled": {
+                        "type": "boolean"
+                    },
+                    "ios": {
+                        "$ref": "#/components/schemas/Ios"
+                    },
+                    "osBuild": {
+                        "type": "string"
+                    },
+                    "udid": {
+                        "type": "string"
+                    },
+                    "managed": {
+                        "type": "boolean"
+                    },
+                    "site": {
+                        "$ref": "#/components/schemas/Site"
+                    },
+                    "tvos": {
+                        "type": "object"
+                    }
+                }
+            },
+            "DiagnosisResponse": {
+                "type": "object",
+                "properties": {
+                    "vendor": {
+                        "type": "string",
+                        "enum": [
+                            "JAMF",
+                            "MOBILE_IRON"
+                        ]
+                    },
+                    "issues": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Issue"
+                        }
+                    },
+                    "failedTests": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "OS_OUTDATED",
+                                "CERT_EXPIRED",
+                                "APP_OUTDATED"
+                            ]
+                        }
+                    },
+                    "allTests": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "OS_OUTDATED",
+                                "CERT_EXPIRED",
+                                "APP_OUTDATED"
+                            ]
+                        }
+                    },
+                    "deviceDetails": {
+                        "$ref": "#/components/schemas/DeviceDetails"
+                    },
+                    "groups": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MobileDeviceGroup"
+                        }
+                    }
+                }
+            },
+            "ExtensionAttribute": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "extensionAttributeCollectionAllowed": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "Ios": {
+                "type": "object",
+                "properties": {
+                    "capacityMb": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "availableMb": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "percentageUsed": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "model": {
+                        "type": "string"
+                    },
+                    "modelIdentifier": {
+                        "type": "string"
+                    },
+                    "modelNumber": {
+                        "type": "string"
+                    },
+                    "shared": {
+                        "type": "boolean"
+                    },
+                    "supervised": {
+                        "type": "boolean"
+                    },
+                    "batteryLevel": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "lastBackupTimestamp": {
+                        "type": "object"
+                    },
+                    "deviceLocatorServiceEnabled": {
+                        "type": "boolean"
+                    },
+                    "doNotDisturbEnabled": {
+                        "type": "boolean"
+                    },
+                    "cloudBackupEnabled": {
+                        "type": "boolean"
+                    },
+                    "lastCloudBackupTimestamp": {
+                        "type": "object"
+                    },
+                    "locationServicesEnabled": {
+                        "type": "boolean"
+                    },
+                    "computer": {
+                        "type": "object"
+                    },
+                    "bleCapable": {
+                        "type": "boolean"
+                    },
+                    "security": {
+                        "$ref": "#/components/schemas/Security"
+                    },
+                    "purchasing": {
+                        "$ref": "#/components/schemas/Purchasing"
+                    },
+                    "network": {
+                        "$ref": "#/components/schemas/Network"
+                    },
+                    "configurationProfiles": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ConfigurationProfile"
+                        }
+                    },
+                    "attachments": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "applications": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Application"
+                        }
+                    },
+                    "certificates": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Certificate"
+                        }
+                    },
+                    "provisioningProfiles": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "ebooks": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "serviceSubscriptions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ServiceSubscription"
+                        }
+                    },
+                    "iTunesStoreAccountActive": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "Issue": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "enum": [
+                            "OS_OUTDATED",
+                            "CERT_EXPIRED",
+                            "APP_OUTDATED"
+                        ]
+                    },
+                    "additionalData": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "Location": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "object"
+                    },
+                    "realName": {
+                        "type": "object"
+                    },
+                    "emailAddress": {
+                        "type": "object"
+                    },
+                    "position": {
+                        "type": "object"
+                    },
+                    "phoneNumber": {
+                        "type": "object"
+                    },
+                    "departmentId": {
+                        "type": "object"
+                    },
+                    "buildingId": {
+                        "type": "object"
+                    },
+                    "room": {
+                        "type": "object"
+                    }
+                }
+            },
+            "MobileDeviceGroup": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Network": {
+                "type": "object",
+                "properties": {
+                    "cellularTechnology": {
+                        "type": "string"
+                    },
+                    "voiceRoamingEnabled": {
+                        "type": "boolean"
+                    },
+                    "imei": {
+                        "type": "string"
+                    },
+                    "iccid": {
+                        "type": "string"
+                    },
+                    "meid": {
+                        "type": "object"
+                    },
+                    "eid": {
+                        "type": "string"
+                    },
+                    "carrierSettingsVersion": {
+                        "type": "string"
+                    },
+                    "currentCarrierNetwork": {
+                        "type": "object"
+                    },
+                    "currentMobileCountryCode": {
+                        "type": "string"
+                    },
+                    "currentMobileNetworkCode": {
+                        "type": "string"
+                    },
+                    "homeCarrierNetwork": {
+                        "type": "string"
+                    },
+                    "homeMobileCountryCode": {
+                        "type": "string"
+                    },
+                    "homeMobileNetworkCode": {
+                        "type": "string"
+                    },
+                    "dataRoamingEnabled": {
+                        "type": "boolean"
+                    },
+                    "roaming": {
+                        "type": "boolean"
+                    },
+                    "personalHotspotEnabled": {
+                        "type": "boolean"
+                    },
+                    "phoneNumber": {
+                        "type": "object"
+                    }
+                }
+            },
+            "Purchasing": {
+                "type": "object",
+                "properties": {
+                    "purchased": {
+                        "type": "boolean"
+                    },
+                    "leased": {
+                        "type": "boolean"
+                    },
+                    "poNumber": {
+                        "type": "object"
+                    },
+                    "vendor": {
+                        "type": "object"
+                    },
+                    "appleCareId": {
+                        "type": "object"
+                    },
+                    "purchasePrice": {
+                        "type": "object"
+                    },
+                    "purchasingAccount": {
+                        "type": "object"
+                    },
+                    "poDate": {
+                        "type": "string"
+                    },
+                    "warrantyExpiresDate": {
+                        "type": "string"
+                    },
+                    "leaseExpiresDate": {
+                        "type": "string"
+                    },
+                    "lifeExpectancy": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "purchasingContact": {
+                        "type": "object"
+                    }
+                }
+            },
+            "Security": {
+                "type": "object",
+                "properties": {
+                    "dataProtected": {
+                        "type": "boolean"
+                    },
+                    "blockLevelEncryptionCapable": {
+                        "type": "boolean"
+                    },
+                    "fileLevelEncryptionCapable": {
+                        "type": "boolean"
+                    },
+                    "passcodePresent": {
+                        "type": "boolean"
+                    },
+                    "passcodeCompliant": {
+                        "type": "boolean"
+                    },
+                    "passcodeCompliantWithProfile": {
+                        "type": "boolean"
+                    },
+                    "hardwareEncryption": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "activationLockEnabled": {
+                        "type": "boolean"
+                    },
+                    "jailBreakDetected": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "ServiceSubscription": {
+                "type": "object",
+                "properties": {
+                    "carrierSettingsVersion": {
+                        "type": "string"
+                    },
+                    "currentCarrierNetwork": {
+                        "type": "object"
+                    },
+                    "currentMobileCountryCode": {
+                        "type": "string"
+                    },
+                    "currentMobileNetworkCode": {
+                        "type": "string"
+                    },
+                    "subscriberCarrierNetwork": {
+                        "type": "string"
+                    },
+                    "eid": {
+                        "type": "string"
+                    },
+                    "iccid": {
+                        "type": "string"
+                    },
+                    "imei": {
+                        "type": "string"
+                    },
+                    "label": {
+                        "type": "string"
+                    },
+                    "labelId": {
+                        "type": "string"
+                    },
+                    "meid": {
+                        "type": "object"
+                    },
+                    "phoneNumber": {
+                        "type": "object"
+                    },
+                    "slot": {
+                        "type": "string"
+                    },
+                    "dataPreferred": {
+                        "type": "boolean"
+                    },
+                    "voicePreferred": {
+                        "type": "boolean"
+                    },
+                    "roaming": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "Site": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ApiResponseDeviceDataImportResponse": {
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "type": "boolean"
+                    },
+                    "messageCodes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "body": {
+                        "$ref": "#/components/schemas/DeviceDataImportResponse"
+                    }
+                }
+            },
+            "DeviceDataField": {
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "string"
+                    },
+                    "valid": {
+                        "type": "boolean"
+                    },
+                    "errorCode": {
+                        "type": "string"
+                    },
+                    "additionalErrorInfo": {
+                        "type": "string"
+                    }
+                }
+            },
+            "DeviceDataImportResponse": {
+                "type": "object",
+                "properties": {
+                    "records": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/DeviceDataRecord"
+                        }
+                    },
+                    "hasErrors": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "DeviceDataRecord": {
+                "type": "object",
+                "properties": {
+                    "serialNumber": {
+                        "$ref": "#/components/schemas/DeviceDataField"
+                    },
+                    "deviceType": {
+                        "$ref": "#/components/schemas/DeviceDataField"
+                    },
+                    "userName": {
+                        "$ref": "#/components/schemas/DeviceDataField"
+                    },
+                    "emailAddress": {
+                        "$ref": "#/components/schemas/DeviceDataField"
+                    },
+                    "eaEnv": {
+                        "$ref": "#/components/schemas/DeviceDataField"
+                    },
+                    "eaStore": {
+                        "$ref": "#/components/schemas/DeviceDataField"
+                    },
+                    "eaUseCase": {
+                        "$ref": "#/components/schemas/DeviceDataField"
+                    }
+                }
+            },
+            "ApiResponseListDeviceInfo": {
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "type": "boolean"
+                    },
+                    "messageCodes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "body": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/DeviceInfo"
+                        }
+                    }
+                }
+            },
+            "DeviceInfo": {
+                "type": "object",
+                "properties": {
+                    "serialNumber": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "model": {
+                        "type": "string"
+                    },
+                    "lastOnline": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "warning": {
+                        "type": "string",
+                        "enum": [
+                            "NO",
+                            "YELLOW",
+                            "RED"
+                        ]
+                    },
+                    "udid": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "osVersion": {
+                        "type": "string"
+                    },
+                    "supervised": {
+                        "type": "string"
+                    },
+                    "passcodeStatus": {
+                        "type": "string"
+                    },
+                    "lastEnrollmentTime": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "wifiMacAddress": {
+                        "type": "string"
+                    },
+                    "managed": {
+                        "type": "string"
+                    },
+                    "timezone": {
+                        "type": "string"
+                    },
+                    "lostModeEnabled": {
+                        "type": "string"
+                    },
+                    "store": {
+                        "type": "string"
+                    },
+                    "ipAddress": {
+                        "type": "string"
+                    },
+                    "tethered": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "indicators": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "OS_OUT_DATED",
+                                "LAST_ONLINE"
+                            ]
+                        }
+                    }
+                }
+            },
+            "ApiResponseDeviceDetails": {
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "type": "boolean"
+                    },
+                    "messageCodes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "body": {
+                        "$ref": "#/components/schemas/DeviceDetails"
+                    }
+                }
+            },
+            "ApiResponseMobileAuditManagementHistory": {
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "type": "boolean"
+                    },
+                    "messageCodes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "body": {
+                        "$ref": "#/components/schemas/MobileAuditManagementHistory"
+                    }
+                }
+            },
+            "MobileAudit": {
+                "type": "object",
+                "properties": {
+                    "event": {
+                        "type": "string"
+                    },
+                    "username": {
+                        "type": "string"
+                    },
+                    "dateTime": {
+                        "type": "string"
+                    },
+                    "dateTimeEpoch": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "MobileAuditManagementHistory": {
+                "type": "object",
+                "properties": {
+                    "completed": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MobileCommandCompleted"
+                        }
+                    },
+                    "failed": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MobileCommandFailed"
+                        }
+                    },
+                    "pending": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MobileCommandPending"
+                        }
+                    },
+                    "auditHistory": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MobileAudit"
+                        }
+                    }
+                }
+            },
+            "MobileCommandCompleted": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "completedOn": {
+                        "type": "string"
+                    },
+                    "completedEpoch": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "userName": {
+                        "type": "string"
+                    }
+                }
+            },
+            "MobileCommandFailed": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "failedOn": {
+                        "type": "string"
+                    },
+                    "failedOnEpoch": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "issuedOn": {
+                        "type": "string"
+                    },
+                    "issuedOnEpoch": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "userName": {
+                        "type": "string"
+                    },
+                    "error": {
+                        "type": "string"
+                    }
+                }
+            },
+            "MobileCommandPending": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "issuedOn": {
+                        "type": "string"
+                    },
+                    "issuedOnEpoch": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "userName": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ApiResponseMapObjectObject": {
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "type": "boolean"
+                    },
+                    "messageCodes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "body": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "ApiResponseEndpointChecksResponse": {
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "type": "boolean"
+                    },
+                    "messageCodes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "body": {
+                        "$ref": "#/components/schemas/EndpointChecksResponse"
+                    }
+                }
+            },
+            "EndpointCheckResponse": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "success": {
+                        "type": "boolean"
+                    },
+                    "responseCode": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "response": {
+                        "type": "string"
+                    }
+                }
+            },
+            "EndpointChecksResponse": {
+                "type": "object",
+                "properties": {
+                    "endPoints": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/EndpointCheckResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
     }
-  ],
-  "security": [
-    {
-      "bearerAuth": []
-    }
-  ],
-  "paths": {
-    "/device/wipe": {
-      "post": {
-        "tags": [
-          "device-api"
-        ],
-        "summary": "wipes device ",
-        "operationId": "wipe",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeviceIdAdditionalData"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Returns unauthorized/forbidden response code"
-          },
-          "500": {
-            "description": "returns error response(success=false,body=null) with messageCodes",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": false,
-                  "messageCodes": [
-                    "unknown.error"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/device/unlock": {
-      "post": {
-        "tags": [
-          "device-api"
-        ],
-        "summary": "unlocks device ",
-        "operationId": "unlock",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeviceIdAdditionalData"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Returns unauthorized/forbidden response code"
-          },
-          "500": {
-            "description": "returns error response(success=false,body=null) with messageCodes",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": false,
-                  "messageCodes": [
-                    "unknown.error"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/device/sync": {
-      "post": {
-        "tags": [
-          "device-api"
-        ],
-        "summary": "sync device",
-        "operationId": "sync",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeviceIdAdditionalData"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Returns unauthorized/forbidden response code"
-          },
-          "500": {
-            "description": "returns error response(success=false,body=null) with messageCodes",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": false,
-                  "messageCodes": [
-                    "unknown.error"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/device/shutdown": {
-      "post": {
-        "tags": [
-          "device-api"
-        ],
-        "summary": "shutdowns device ",
-        "operationId": "shutdown",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeviceIdAdditionalData"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Returns unauthorized/forbidden response code"
-          },
-          "500": {
-            "description": "returns error response(success=false,body=null) with messageCodes",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": false,
-                  "messageCodes": [
-                    "unknown.error"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/device/retire": {
-      "post": {
-        "tags": [
-          "device-api"
-        ],
-        "summary": "retire or un manage device ",
-        "operationId": "retire",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeviceIdAdditionalData"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Returns unauthorized/forbidden response code"
-          },
-          "500": {
-            "description": "returns error response(success=false,body=null) with messageCodes",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": false,
-                  "messageCodes": [
-                    "unknown.error"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/device/restart": {
-      "post": {
-        "tags": [
-          "device-api"
-        ],
-        "summary": "restarts device ",
-        "operationId": "restart",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeviceIdAdditionalData"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Returns unauthorized/forbidden response code"
-          },
-          "500": {
-            "description": "returns error response(success=false,body=null) with messageCodes",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": false,
-                  "messageCodes": [
-                    "unknown.error"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/device/issue/fix": {
-      "post": {
-        "tags": [
-          "device-api"
-        ],
-        "summary": "fixes device issue(s) ",
-        "operationId": "fixIssues",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeviceIdAdditionalData"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Returns unauthorized/forbidden response code"
-          },
-          "500": {
-            "description": "returns error response(success=false,body=null) with messageCodes",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": false,
-                  "messageCodes": [
-                    "unknown.error"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/device/enableLostMode": {
-      "post": {
-        "tags": [
-          "device-api"
-        ],
-        "summary": "enable lost mode on device ",
-        "operationId": "enableLostMode",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeviceIdAdditionalData"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Returns unauthorized/forbidden response code"
-          },
-          "500": {
-            "description": "returns error response(success=false,body=null) with messageCodes",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": false,
-                  "messageCodes": [
-                    "unknown.error"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/device/disableLostMode": {
-      "post": {
-        "tags": [
-          "device-api"
-        ],
-        "summary": "disable lost mode on device ",
-        "operationId": "disableLostMode",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeviceIdAdditionalData"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseFixIssuesResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Returns unauthorized/forbidden response code"
-          },
-          "500": {
-            "description": "returns error response(success=false,body=null) with messageCodes",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": false,
-                  "messageCodes": [
-                    "unknown.error"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/device/diagnose": {
-      "post": {
-        "tags": [
-          "device-api"
-        ],
-        "summary": "diagnose device and return issues if there are any",
-        "operationId": "diagnose",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeviceIdAdditionalData"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseDiagnosisResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Returns unauthorized/forbidden response code"
-          },
-          "500": {
-            "description": "returns error response(success=false,body=null) with messageCodes",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": false,
-                  "messageCodes": [
-                    "unknown.error"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/device": {
-      "get": {
-        "tags": [
-          "device-api"
-        ],
-        "summary": "Filters and returns enrolled devices based on searchString, searchString request param is optional. if the searchString is passed, filters devices based on searchString. if no devices found return error response(success = false) with messageCodes",
-        "operationId": "findAll",
-        "parameters": [
-          {
-            "name": "searchString",
-            "in": "query",
-            "description": "String to be searched either in device name or serial number ",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseListDeviceInfo"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Returns unauthorized/forbidden response code"
-          },
-          "500": {
-            "description": "returns error response(success=false,body=null) with messageCodes",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": false,
-                  "messageCodes": [
-                    "unknown.error"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/device/{deviceId}": {
-      "get": {
-        "tags": [
-          "device-api"
-        ],
-        "summary": "returns details of a device by deviceId",
-        "operationId": "details",
-        "parameters": [
-          {
-            "name": "deviceId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseDeviceDetails"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Returns unauthorized/forbidden response code"
-          },
-          "500": {
-            "description": "returns error response(success=false,body=null) with messageCodes",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": false,
-                  "messageCodes": [
-                    "unknown.error"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/device/history/{deviceId}": {
-      "get": {
-        "tags": [
-          "device-api"
-        ],
-        "summary": "returns management history",
-        "operationId": "getManagementHistory",
-        "parameters": [
-          {
-            "name": "deviceId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseMobileAuditManagementHistory"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Returns unauthorized/forbidden response code"
-          },
-          "500": {
-            "description": "returns error response(success=false,body=null) with messageCodes",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": false,
-                  "messageCodes": [
-                    "unknown.error"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/config/issues/instructions": {
-      "get": {
-        "tags": [
-          "config-api"
-        ],
-        "description": "returns device issues and instruction json data",
-        "operationId": "getIssueInstructions",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseMapObjectObject"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Returns unauthorized/forbidden response code"
-          },
-          "500": {
-            "description": "returns error response(success=false,body=null) with messageCodes",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": false,
-                  "messageCodes": [
-                    "unknown.error"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/check/endpoints": {
-      "get": {
-        "tags": [
-          "checks-api"
-        ],
-        "description": "checks configured endpoints for client",
-        "operationId": "getIssueInstructions_1",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiResponseEndpointChecksResponse"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Returns unauthorized/forbidden response code"
-          },
-          "500": {
-            "description": "returns error response(success=false,body=null) with messageCodes",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": false,
-                  "messageCodes": [
-                    "unknown.error"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/": {
-      "get": {
-        "tags": [
-          "health-api"
-        ],
-        "operationId": "checkHealth_1",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Returns unauthorized/forbidden response code"
-          },
-          "500": {
-            "description": "returns error response(success=false,body=null) with messageCodes",
-            "content": {
-              "application/json": {
-                "example": {
-                  "success": false,
-                  "messageCodes": [
-                    "unknown.error"
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "DeviceIdAdditionalData": {
-        "type": "object",
-        "properties": {
-          "deviceId": {
-            "type": "string"
-          },
-          "additionalData": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "ApiResponseFixIssuesResponse": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "messageCodes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "body": {
-            "$ref": "#/components/schemas/FixIssuesResponse"
-          }
-        }
-      },
-      "FixIssuesResponse": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "errors": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "ApiResponseDiagnosisResponse": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "messageCodes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "body": {
-            "$ref": "#/components/schemas/DiagnosisResponse"
-          }
-        }
-      },
-      "Application": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "identifier": {
-            "type": "string"
-          },
-          "version": {
-            "type": "string"
-          },
-          "shortVersion": {
-            "type": "string"
-          }
-        }
-      },
-      "Certificate": {
-        "type": "object",
-        "properties": {
-          "commonName": {
-            "type": "string"
-          },
-          "identity": {
-            "type": "boolean"
-          },
-          "expirationDateEpoch": {
-            "type": "string"
-          },
-          "subjectName": {
-            "type": "string"
-          },
-          "serialNumber": {
-            "type": "string"
-          },
-          "sha1Fingerprint": {
-            "type": "string"
-          },
-          "issuedDateEpoch": {
-            "type": "string"
-          },
-          "certificateStatus": {
-            "type": "string"
-          },
-          "lifecycleStatus": {
-            "type": "string"
-          }
-        }
-      },
-      "ConfigurationProfile": {
-        "type": "object",
-        "properties": {
-          "displayName": {
-            "type": "string"
-          },
-          "version": {
-            "type": "string"
-          },
-          "uuid": {
-            "type": "string"
-          },
-          "identifier": {
-            "type": "string"
-          }
-        }
-      },
-      "DeviceDetails": {
-        "type": "object",
-        "properties": {
-          "serialNumber": {
-            "type": "string"
-          },
-          "osVersion": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "location": {
-            "$ref": "#/components/schemas/Location"
-          },
-          "id": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string"
-          },
-          "timeZone": {
-            "type": "string"
-          },
-          "enrollmentSessionTokenValid": {
-            "type": "boolean"
-          },
-          "osSupplementalBuildVersion": {
-            "type": "object"
-          },
-          "lastInventoryUpdateTimestamp": {
-            "type": "string"
-          },
-          "mdmProfileExpirationTimestamp": {
-            "type": "string"
-          },
-          "declarativeDeviceManagementEnabled": {
-            "type": "boolean"
-          },
-          "enforceName": {
-            "type": "boolean"
-          },
-          "assetTag": {
-            "type": "object"
-          },
-          "osRapidSecurityResponse": {
-            "type": "object"
-          },
-          "softwareUpdateDeviceId": {
-            "type": "string"
-          },
-          "initialEntryTimestamp": {
-            "type": "string"
-          },
-          "wifiMacAddress": {
-            "type": "string"
-          },
-          "bluetoothMacAddress": {
-            "type": "string"
-          },
-          "deviceOwnershipLevel": {
-            "type": "string"
-          },
-          "enrollmentMethod": {
-            "type": "string"
-          },
-          "lastEnrollmentTimestamp": {
-            "type": "string"
-          },
-          "extensionAttributes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ExtensionAttribute"
-            }
-          },
-          "managementId": {
-            "type": "string"
-          },
-          "additionalProperties": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object"
-            }
-          },
-          "ipAddress": {
-            "type": "string"
-          },
-          "ios": {
-            "$ref": "#/components/schemas/Ios"
-          },
-          "osBuild": {
-            "type": "string"
-          },
-          "udid": {
-            "type": "string"
-          },
-          "managed": {
-            "type": "boolean"
-          },
-          "site": {
-            "$ref": "#/components/schemas/Site"
-          },
-          "tvos": {
-            "type": "object"
-          }
-        }
-      },
-      "DiagnosisResponse": {
-        "type": "object",
-        "properties": {
-          "vendor": {
-            "type": "string",
-            "enum": [
-              "JAMF",
-              "MOBILE_IRON"
-            ]
-          },
-          "issues": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Issue"
-            }
-          },
-          "failedTests": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "OS_OUTDATED",
-                "CERT_EXPIRED",
-                "APP_OUTDATED"
-              ]
-            }
-          },
-          "allTests": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "OS_OUTDATED",
-                "CERT_EXPIRED",
-                "APP_OUTDATED"
-              ]
-            }
-          },
-          "deviceDetails": {
-            "$ref": "#/components/schemas/DeviceDetails"
-          },
-          "groups": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MobileDeviceGroup"
-            }
-          }
-        }
-      },
-      "ExtensionAttribute": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string"
-          },
-          "value": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "extensionAttributeCollectionAllowed": {
-            "type": "boolean"
-          }
-        }
-      },
-      "Ios": {
-        "type": "object",
-        "properties": {
-          "capacityMb": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "availableMb": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "percentageUsed": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "model": {
-            "type": "string"
-          },
-          "modelIdentifier": {
-            "type": "string"
-          },
-          "modelNumber": {
-            "type": "string"
-          },
-          "shared": {
-            "type": "boolean"
-          },
-          "supervised": {
-            "type": "boolean"
-          },
-          "batteryLevel": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "lastBackupTimestamp": {
-            "type": "object"
-          },
-          "deviceLocatorServiceEnabled": {
-            "type": "boolean"
-          },
-          "doNotDisturbEnabled": {
-            "type": "boolean"
-          },
-          "cloudBackupEnabled": {
-            "type": "boolean"
-          },
-          "lastCloudBackupTimestamp": {
-            "type": "object"
-          },
-          "locationServicesEnabled": {
-            "type": "boolean"
-          },
-          "computer": {
-            "type": "object"
-          },
-          "bleCapable": {
-            "type": "boolean"
-          },
-          "security": {
-            "$ref": "#/components/schemas/Security"
-          },
-          "purchasing": {
-            "$ref": "#/components/schemas/Purchasing"
-          },
-          "network": {
-            "$ref": "#/components/schemas/Network"
-          },
-          "configurationProfiles": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ConfigurationProfile"
-            }
-          },
-          "attachments": {
-            "type": "array",
-            "items": {
-              "type": "object"
-            }
-          },
-          "applications": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Application"
-            }
-          },
-          "certificates": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Certificate"
-            }
-          },
-          "provisioningProfiles": {
-            "type": "array",
-            "items": {
-              "type": "object"
-            }
-          },
-          "ebooks": {
-            "type": "array",
-            "items": {
-              "type": "object"
-            }
-          },
-          "serviceSubscriptions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ServiceSubscription"
-            }
-          },
-          "iTunesStoreAccountActive": {
-            "type": "boolean"
-          }
-        }
-      },
-      "Issue": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "string",
-            "enum": [
-              "OS_OUTDATED",
-              "CERT_EXPIRED",
-              "APP_OUTDATED"
-            ]
-          },
-          "additionalData": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object"
-            }
-          }
-        }
-      },
-      "Location": {
-        "type": "object",
-        "properties": {
-          "username": {
-            "type": "object"
-          },
-          "realName": {
-            "type": "object"
-          },
-          "emailAddress": {
-            "type": "object"
-          },
-          "position": {
-            "type": "object"
-          },
-          "phoneNumber": {
-            "type": "object"
-          },
-          "departmentId": {
-            "type": "object"
-          },
-          "buildingId": {
-            "type": "object"
-          },
-          "room": {
-            "type": "object"
-          }
-        }
-      },
-      "MobileDeviceGroup": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "name": {
-            "type": "string"
-          }
-        }
-      },
-      "Network": {
-        "type": "object",
-        "properties": {
-          "cellularTechnology": {
-            "type": "string"
-          },
-          "voiceRoamingEnabled": {
-            "type": "boolean"
-          },
-          "imei": {
-            "type": "string"
-          },
-          "iccid": {
-            "type": "string"
-          },
-          "meid": {
-            "type": "object"
-          },
-          "eid": {
-            "type": "string"
-          },
-          "carrierSettingsVersion": {
-            "type": "string"
-          },
-          "currentCarrierNetwork": {
-            "type": "object"
-          },
-          "currentMobileCountryCode": {
-            "type": "string"
-          },
-          "currentMobileNetworkCode": {
-            "type": "string"
-          },
-          "homeCarrierNetwork": {
-            "type": "string"
-          },
-          "homeMobileCountryCode": {
-            "type": "string"
-          },
-          "homeMobileNetworkCode": {
-            "type": "string"
-          },
-          "dataRoamingEnabled": {
-            "type": "boolean"
-          },
-          "roaming": {
-            "type": "boolean"
-          },
-          "personalHotspotEnabled": {
-            "type": "boolean"
-          },
-          "phoneNumber": {
-            "type": "object"
-          }
-        }
-      },
-      "Purchasing": {
-        "type": "object",
-        "properties": {
-          "purchased": {
-            "type": "boolean"
-          },
-          "leased": {
-            "type": "boolean"
-          },
-          "poNumber": {
-            "type": "object"
-          },
-          "vendor": {
-            "type": "object"
-          },
-          "appleCareId": {
-            "type": "object"
-          },
-          "purchasePrice": {
-            "type": "object"
-          },
-          "purchasingAccount": {
-            "type": "object"
-          },
-          "poDate": {
-            "type": "string"
-          },
-          "warrantyExpiresDate": {
-            "type": "string"
-          },
-          "leaseExpiresDate": {
-            "type": "string"
-          },
-          "lifeExpectancy": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "purchasingContact": {
-            "type": "object"
-          }
-        }
-      },
-      "Security": {
-        "type": "object",
-        "properties": {
-          "dataProtected": {
-            "type": "boolean"
-          },
-          "blockLevelEncryptionCapable": {
-            "type": "boolean"
-          },
-          "fileLevelEncryptionCapable": {
-            "type": "boolean"
-          },
-          "passcodePresent": {
-            "type": "boolean"
-          },
-          "passcodeCompliant": {
-            "type": "boolean"
-          },
-          "passcodeCompliantWithProfile": {
-            "type": "boolean"
-          },
-          "hardwareEncryption": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "activationLockEnabled": {
-            "type": "boolean"
-          },
-          "jailBreakDetected": {
-            "type": "boolean"
-          }
-        }
-      },
-      "ServiceSubscription": {
-        "type": "object",
-        "properties": {
-          "carrierSettingsVersion": {
-            "type": "string"
-          },
-          "currentCarrierNetwork": {
-            "type": "object"
-          },
-          "currentMobileCountryCode": {
-            "type": "string"
-          },
-          "currentMobileNetworkCode": {
-            "type": "string"
-          },
-          "subscriberCarrierNetwork": {
-            "type": "string"
-          },
-          "eid": {
-            "type": "string"
-          },
-          "iccid": {
-            "type": "string"
-          },
-          "imei": {
-            "type": "string"
-          },
-          "label": {
-            "type": "string"
-          },
-          "labelId": {
-            "type": "string"
-          },
-          "meid": {
-            "type": "object"
-          },
-          "phoneNumber": {
-            "type": "object"
-          },
-          "slot": {
-            "type": "string"
-          },
-          "dataPreferred": {
-            "type": "boolean"
-          },
-          "voicePreferred": {
-            "type": "boolean"
-          },
-          "roaming": {
-            "type": "boolean"
-          }
-        }
-      },
-      "Site": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string"
-          }
-        }
-      },
-      "ApiResponseListDeviceInfo": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "messageCodes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "body": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DeviceInfo"
-            }
-          }
-        }
-      },
-      "DeviceInfo": {
-        "type": "object",
-        "properties": {
-          "serialNumber": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "model": {
-            "type": "string"
-          },
-          "lastOnline": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "warning": {
-            "type": "string",
-            "enum": [
-              "NO",
-              "YELLOW",
-              "RED"
-            ]
-          },
-          "udid": {
-            "type": "string"
-          },
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "osVersion": {
-            "type": "string"
-          },
-          "supervised": {
-            "type": "string"
-          },
-          "passcodeStatus": {
-            "type": "string"
-          },
-          "lastEnrollmentTime": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "wifiMacAddress": {
-            "type": "string"
-          },
-          "managed": {
-            "type": "string"
-          },
-          "timezone": {
-            "type": "string"
-          },
-          "lostModeEnabled": {
-            "type": "string"
-          },
-          "store": {
-            "type": "string"
-          },
-          "ipAddress": {
-            "type": "string"
-          },
-          "tethered": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string"
-          },
-          "indicators": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "OS_OUT_DATED",
-                "LAST_ONLINE"
-              ]
-            }
-          }
-        }
-      },
-      "ApiResponseDeviceDetails": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "messageCodes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "body": {
-            "$ref": "#/components/schemas/DeviceDetails"
-          }
-        }
-      },
-      "ApiResponseMobileAuditManagementHistory": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "messageCodes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "body": {
-            "$ref": "#/components/schemas/MobileAuditManagementHistory"
-          }
-        }
-      },
-      "MobileAudit": {
-        "type": "object",
-        "properties": {
-          "event": {
-            "type": "string"
-          },
-          "username": {
-            "type": "string"
-          },
-          "dateTime": {
-            "type": "string"
-          },
-          "dateTimeEpoch": {
-            "type": "integer",
-            "format": "int64"
-          }
-        }
-      },
-      "MobileAuditManagementHistory": {
-        "type": "object",
-        "properties": {
-          "completed": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MobileCommandCompleted"
-            }
-          },
-          "failed": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MobileCommandFailed"
-            }
-          },
-          "pending": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MobileCommandPending"
-            }
-          },
-          "auditHistory": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MobileAudit"
-            }
-          }
-        }
-      },
-      "MobileCommandCompleted": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "completedOn": {
-            "type": "string"
-          },
-          "completedEpoch": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "userName": {
-            "type": "string"
-          }
-        }
-      },
-      "MobileCommandFailed": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "failedOn": {
-            "type": "string"
-          },
-          "failedOnEpoch": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "issuedOn": {
-            "type": "string"
-          },
-          "issuedOnEpoch": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "userName": {
-            "type": "string"
-          },
-          "error": {
-            "type": "string"
-          }
-        }
-      },
-      "MobileCommandPending": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "issuedOn": {
-            "type": "string"
-          },
-          "issuedOnEpoch": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "userName": {
-            "type": "string"
-          }
-        }
-      },
-      "ApiResponseMapObjectObject": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "messageCodes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "body": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object"
-            }
-          }
-        }
-      },
-      "ApiResponseEndpointChecksResponse": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "messageCodes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "body": {
-            "$ref": "#/components/schemas/EndpointChecksResponse"
-          }
-        }
-      },
-      "EndpointCheckResponse": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "success": {
-            "type": "boolean"
-          },
-          "responseCode": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "response": {
-            "type": "string"
-          }
-        }
-      },
-      "EndpointChecksResponse": {
-        "type": "object",
-        "properties": {
-          "endPoints": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EndpointCheckResponse"
-            }
-          }
-        }
-      }
-    },
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
-      }
-    }
-  }
 }
